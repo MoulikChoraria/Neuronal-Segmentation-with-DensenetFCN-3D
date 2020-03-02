@@ -1,0 +1,25 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Unknown </title></head><body>
+<h1 id="identification-of-aia-terminal-nodule-and-aia-central-nodule-using-densenetfcn-3d">Identification of "AIA terminal nodule" and "AIA central nodule" using DenseNetFCN-3D.</h1>
+<p>Based on two different 3D movies (<code>20190805_SJR3.2.2_w1_s2.nd2</code> and <code>20190805_322_w1_s2.nd2</code>), provided by the <a href="https://www.epfl.ch/labs/lpbs/">Laboratory of the Physics of Biological Systems</a>, our task is to identify and distinguish two parts (the <em>terminal nodule</em> and the <em>central nodule</em>) of a neuron type called AIA.<br />
+For  our  work  we  considered  all  frames  as different  volumes,  not  taking  into  account  time  continuity.<br />
+We used a DenseNetFCN-3D with 4 dense blocks of 3 layers per block (mostly because of computation constraints).  </p>
+<h3 id="deliverables">Deliverables:</h3>
+<ul>
+<li><code>DataGenerator.py</code> python file: Create generator for training and validation, user may apply image augmentation on the fly.  </li>
+<li><code>DenseNet3D.py</code> python file: Implementation of the <a href="https://github.com/GalDude33/DenseNetFCN-3D">DenseNetFCN-3D from GalDude33</a>.   </li>
+<li><code>generateFramesMasksFromVideo.ipynb</code> notebook: Generate frames/masks with desired shape from the video/ground_truth files.  </li>
+<li><code>Training.ipynb</code> notebook: Feed the DenseNetFCN-3D with frames/masks pairs.   </li>
+<li><code>VisualizationPrediction.ipynb</code> notebook: Predict an example mask with the DenseNetFCN-3D model.  </li>
+<li><code>ConfusionMatrix.ipynb</code> notebook: Compute the accuracy and the F1 score for the 'AIA terminal nodule' (class 1) , the 'AIA central nodule'(class 2) and the other cells (class 0).   </li>
+</ul>
+<p>(keep all the files in the same directory)</p>
+<h3 id="how-to-train-the-densenetfcn-3d-predict-masks-and-note-the-model">How to train the DenseNetFCN-3D, predict masks and note the model:</h3>
+<p>We executed the code on Google Colab by following these steps:
+1. The training samples and their corresponding masks need to be stored as <code>.npy</code> files. Their names should be <code>frame_i.npy</code>and <code>mask_i.npy</code> respectively (for i going from 0 â†’ maxTime) and frames/masks need to be stored in two different folders. If you gives the good PATHs in the second cell of <code>generateFramesMasksFromVideo.ipynb</code>, this notebook does this steps for you.<br />
+P.S: To help our model, we labeled <em>ALL</em> cell parts that were not AIA central/terminal noduls with the same value. Thus, the model only has to distinguish 3 types of cells.
+2. Give the wanted paths and variables values to all the second cell's variables of <code>Training.ipynb</code> notebook. Then execute all cells. It will train a DenseNetFCN-3D and save the model.
+3. Once the model has been trained, it is possible to have a visual idea of the prediction with the <code>VisualizationPrediction.ipynb</code> notebook. First, change the variables/paths of the second cell and then run all the cells. The last cell shows the image, the mask and finally the predicted mask.
+4. Finally, the <code>ConfusionMatrix.ipynb</code> notebook can be used (once the PATHs from cell 2 have been changed) to compute the accuracy and the F1 score for the 'AIA terminal nodule' (class 1) , the 'AIA central nodule'(class 2) and the other cells (class 0).</p>
+<h3 id="references-densenet3d-from-galdude33">REFERENCES: <a href="https://github.com/GalDude33/DenseNetFCN-3D">DenseNet3D from GalDude33</a></h3>
+<h4 id="deadline-december-19th-2019-2359">Deadline: December 19th 2019, 23:59</h4>
+</body></html>
