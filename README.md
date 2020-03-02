@@ -15,12 +15,11 @@ Based on two different 3D movies (`20190805_SJR3.2.2_w1_s2.nd2` and `20190805_32
 (keep all the files in the same directory)
 
 ### How to train the DenseNetFCN-3D, predict masks and note the model:
-We executed the code on Google Colab by following these steps:
-1. The training samples and their corresponding masks need to be stored as `.npy` files. Their names should be `frame_i.npy`and `mask_i.npy` respectively (for i going from 0 → maxTime) and frames/masks need to be stored in two different folders. If you gives the good PATHs in the second cell of `generateFramesMasksFromVideo.ipynb`, this notebook does this steps for you.  
-P.S: To help our model, we labeled *ALL* cell parts that were not AIA central/terminal noduls with the same value. Thus, the model only has to distinguish 3 types of cells.
-2. Give the wanted paths and variables values to all the second cell's variables of `Training.ipynb` notebook. Then execute all cells. It will train a DenseNetFCN-3D and save the model.
-3. Once the model has been trained, it is possible to have a visual idea of the prediction with the `VisualizationPrediction.ipynb` notebook. First, change the variables/paths of the second cell and then run all the cells. The last cell shows the image, the mask and finally the predicted mask.
-4. Finally, the `ConfusionMatrix.ipynb` notebook can be used (once the PATHs from cell 2 have been changed) to compute the accuracy and the F1 score for the 'AIA terminal nodule' (class 1) , the 'AIA central nodule'(class 2) and the other cells (class 0).
+1. The training samples and corresponding masks to be stored as `.npy` files, formattted as `frame_i.npy`and `mask_i.npy` respectively (i=frame_time). Specify PATHs in `generateFramesMasksFromVideo.ipynb`.  
+P.S: Labeled *ALL* cell parts that were not AIA central/terminal noduls as same feature
+2. Specify path and variable values in `Training.ipynb` notebook. Notebook trains a DenseNetFCN-3D and saves the model.
+3. Visualization of performance with the `VisualizationPrediction.ipynb` notebook. The last cell shows the image, the mask and finally the predicted mask.
+4. The `ConfusionMatrix.ipynb` notebook may be used to compute the accuracy and the F1 score for the 'AIA terminal nodule' (class 1) , the 'AIA central nodule'(class 2) and the other cells (class 0).
 
 ### REFERENCES: [DenseNet3D from GalDude33](https://github.com/GalDude33/DenseNetFCN-3D)
 #### Collaborators: Victor Stimpfling, Loris Pilotto
